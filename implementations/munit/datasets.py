@@ -10,9 +10,11 @@ import torchvision.transforms as transforms
 
 class ImageDataset(Dataset):
     def __init__(self, root, transforms_=None, mode="train"):
+        # print('root directory: ', root)
         self.transform = transforms.Compose(transforms_)
 
         self.files = sorted(glob.glob(os.path.join(root, mode) + "/*.*"))
+        # print('Mode : ', mode, " ", len(self.files))
         if mode == "train":
             self.files.extend(sorted(glob.glob(os.path.join(root, "test") + "/*.*")))
 
